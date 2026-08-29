@@ -95,7 +95,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.025em;
 }
 
-.wrkrs-mark { width: 22px; height: 22px; }
+/*
+ * The symbol's 2048 canvas includes the brand's 12.5% clear space, so the box is
+ * larger than the visible mark. 18px renders the symbol about 13.5px tall next to
+ * the 16px wordmark: the same 0.84 symbol-to-text ratio as the official lockup.
+ */
+.wrkrs-mark { width: 18px; height: 18px; }
 
 .nav-links {
   display: flex;
