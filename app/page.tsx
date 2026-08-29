@@ -1,4 +1,5 @@
 import { WrkrsMark } from "@/components/brand/wrkrs-mark";
+import { SetupTerminalAnimation } from "@/components/terminal/setup-terminal-animation";
 import { TerminalChrome } from "@/components/terminal/terminal-chrome";
 import { principles, workflow } from "@/lib/landing-content";
 
@@ -44,38 +45,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="terminal-visual" aria-label="A macOS terminal running wrkrs inside the Zerro repository">
-          <TerminalChrome title="zerro — zsh — 118×32" />
-          <div className="terminal-screen terminal-screen-hero">
-            <div className="shell-prompt">
-              <span className="prompt-user">colin@MacBook-Pro</span>{" "}
-              <span className="prompt-path">zerro</span>{" "}
-              <span className="prompt-mark">%</span>{" "}
-              <strong>npx wrkrs init</strong>
-            </div>
-
-            <div className="terminal-output terminal-output-hero">
-              <div className="terminal-row"><span className="tree">┌</span><p><b>wrkrs</b> <span className="terminal-dim">v0.1.0</span></p></div>
-              <div className="terminal-row terminal-spacer"><span className="tree">│</span><p /></div>
-              <div className="terminal-row"><span className="terminal-green">◇</span><p>Project detected</p></div>
-              <div className="terminal-row terminal-detail"><span className="tree">│</span><p>SmartScaleAI/Zerro · Swift · GitHub Actions</p></div>
-              <div className="terminal-row terminal-spacer"><span className="tree">│</span><p /></div>
-              <div className="terminal-row"><span className="terminal-amber">◆</span><p>Existing Claude Code configuration found</p></div>
-              <div className="terminal-row terminal-detail"><span className="tree">│</span><p>CLAUDE.md · .claude/settings.json · 3 existing agents</p></div>
-              <div className="terminal-row terminal-spacer"><span className="tree">│</span><p /></div>
-              <div className="terminal-row"><span className="terminal-green">◇</span><p>Worker roster proposed</p></div>
-              <div className="terminal-row terminal-detail"><span className="tree">│</span><p>Product Manager · Designer · Engineer · QA</p></div>
-              <div className="terminal-row terminal-spacer"><span className="tree">│</span><p /></div>
-              <div className="terminal-row"><span className="terminal-green">◇</span><p>Installation plan <span className="terminal-dim">(no files changed)</span></p></div>
-              <div className="terminal-plan-row"><span className="tree">│</span><b className="plan-keep">KEEP</b><code>CLAUDE.md</code></div>
-              <div className="terminal-plan-row"><span className="tree">│</span><b className="plan-reuse">REUSE</b><code>.claude/agents/swift-engineer.md</code></div>
-              <div className="terminal-plan-row"><span className="tree">│</span><b className="plan-merge">MERGE</b><code>.claude/settings.json</code></div>
-              <div className="terminal-plan-row"><span className="tree">│</span><b className="plan-add">ADD</b><code>.wrkrs/</code></div>
-              <div className="terminal-row terminal-spacer"><span className="tree">│</span><p /></div>
-              <div className="terminal-row"><span className="terminal-green">└</span><p>Ready. Run again with <code>--apply</code> to install.</p></div>
-            </div>
-          </div>
-        </div>
+        <SetupTerminalAnimation />
       </section>
 
       <section className="signal-strip" aria-label="Product attributes">
