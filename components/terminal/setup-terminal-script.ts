@@ -178,11 +178,6 @@ export const LOOP_DURATION_MS = setupTerminalFrames.reduce((total, frame) => tot
 
 /** One concise description of the whole sequence for assistive technology. */
 export const setupTerminalDescription =
-  "Terminal recording. Running npx wrkrs init inside the Zerro repository resolves the Git worktree, " +
-  "detects the Swift project and the existing Claude Code configuration, proposes Product Manager, " +
-  "Product Designer, Software Engineer, and QA Engineer workers with a macOS and Swift specialization, " +
-  "and shows an installation plan that preserves CLAUDE.md and the existing .claude configuration while " +
-  "adding .wrkrs files, wrkrs agents, and a wrkrs skill. Nothing is written until the developer confirms. " +
-  "After confirmation, the configuration, Claude Code adapter, and ownership manifest are written, and " +
-  "npx wrkrs check validates the installation and directs the developer to open Claude Code and start " +
-  "with the Product Manager worker.";
+  "Terminal animation showing npx wrkrs init inspecting the Zerro repository, proposing four AI workers, " +
+  "preserving existing Claude configuration, waiting for approval, installing repository-owned files, " +
+  "and validating the setup with npx wrkrs check.";

@@ -31,16 +31,30 @@ function subscribeToDocumentVisibility(onChange: () => void) {
 const getDocumentVisible = () => document.visibilityState === "visible";
 const getServerDocumentVisible = () => true;
 
+interface Playback {
+  /** Index into `setupTerminalFrames`. */
+  frame: number;
+  /** False while the server-rendered completed session is still waiting for its first fade. */
+  started: boolean;
+}
+
+const initialPlayback: Playback = { frame: FINAL_FRAME_INDEX, started: false };
+
+function advance({ frame }: Playback): Playback {
+  return { frame: (frame + 1) % setupTerminalFrames.length, started: true };
+}
+
 /**
  * The hero terminal: a looping, data-driven replay of `npx wrkrs init` and
- * `npx wrkrs check`. The server renders the completed session; on the client the
- * loop clears that state and replays from the first keystroke. Playback pauses
- * while the terminal is off screen or the tab is hidden, and never starts when
- * the visitor prefers reduced motion.
+ * `npx wrkrs check`. The server renders the completed session as a preview; as
+ * soon as playback is allowed, the loop fades it and replays from the first
+ * keystroke. Later loops hold the completed session for `FINAL_HOLD_MS` before
+ * fading. Playback pauses while the terminal is off screen or the tab is hidden,
+ * and never starts when the visitor prefers reduced motion.
  */
 export function SetupTerminalAnimation() {
   const visualRef = useRef<HTMLDivElement>(null);
-  const [frameIndex, setFrameIndex] = useState(FINAL_FRAME_INDEX);
+  const [playback, setPlayback] = useState(initialPlayback);
   const [inView, setInView] = useState(false);
   const reducedMotion = useSyncExternalStore(
     subscribeToReducedMotion,
@@ -67,13 +81,14 @@ export function SetupTerminalAnimation() {
 
   useEffect(() => {
     if (!playing) return;
-    const timer = window.setTimeout(() => {
-      setFrameIndex((index) => (index + 1) % setupTerminalFrames.length);
-    }, setupTerminalFrames[frameIndex].duration);
+    // The server-rendered session is a preview, not the end of a loop: fade it as
+    // soon as playback is allowed instead of holding it for FINAL_HOLD_MS first.
+    const duration = playback.started ? setupTerminalFrames[playback.frame].duration : 0;
+    const timer = window.setTimeout(() => setPlayback(advance), duration);
     return () => window.clearTimeout(timer);
-  }, [playing, frameIndex]);
+  }, [playing, playback.frame, playback.started]);
 
-  const frame = setupTerminalFrames[reducedMotion ? FINAL_FRAME_INDEX : frameIndex];
+  const frame = setupTerminalFrames[reducedMotion ? FINAL_FRAME_INDEX : playback.frame];
   const committed = setupScript.slice(0, frame.lines);
   const typing = frame.typed === undefined ? null : setupScript[frame.lines];
 
