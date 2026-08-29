@@ -99,7 +99,7 @@ export function SetupTerminalAnimation() {
       role="img"
       aria-label={setupTerminalDescription}
     >
-      <TerminalChrome title="zerro — zsh — 118×32" />
+      <TerminalChrome title="zerro · zsh · 118×32" />
       <div className="terminal-screen terminal-screen-hero">
         <div className={frame.clearing ? "terminal-buffer is-clearing" : "terminal-buffer"}>
           {committed.map((entry, index) => (

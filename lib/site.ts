@@ -1,4 +1,4 @@
-export const siteName = "wrkrs — AI agent teams as code";
+export const siteName = "wrkrs: AI agent teams as code";
 
 export const siteDescription =
   "An open-source CLI that organizes AI agents into repository-owned development workers with clear roles, specializations, and approval rules.";
