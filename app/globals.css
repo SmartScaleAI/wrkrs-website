@@ -413,7 +413,45 @@ a { color: inherit; text-decoration: none; }
   -webkit-font-smoothing: antialiased;
 }
 
-.terminal-screen-hero { padding: 23px 24px 25px; }
+/* Fixed to the height of the original static transcript so the animation never shifts layout. */
+.terminal-screen-hero {
+  position: relative;
+  height: 315px;
+  overflow: hidden;
+  /* Soften rows that have scrolled past the top edge instead of cutting them mid-glyph. */
+  mask-image: linear-gradient(to bottom, transparent, #000 23px);
+}
+
+/*
+ * The transcript behaves like a real terminal buffer: it fills from the top and,
+ * once it outgrows the screen, older lines scroll off the top edge. Anchoring the
+ * buffer to the bottom with a min-height equal to the screen achieves both.
+ */
+.terminal-buffer {
+  position: absolute;
+  inset: auto 24px 25px;
+  min-height: calc(100% - 48px);
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  color: #e3e3e3;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.terminal-buffer.is-clearing { opacity: 0; transition: opacity 420ms ease; }
+.terminal-blank { height: 14px; }
+
+.terminal-caret {
+  display: inline-block;
+  width: .55em;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -.15em;
+  background: #d8d8d8;
+}
+
+.terminal-caret.is-idle { animation: terminal-cursor 1.1s steps(1) infinite; }
 
 .shell-prompt {
   color: #e8e8e8;
@@ -427,14 +465,6 @@ a { color: inherit; text-decoration: none; }
 .prompt-path { color: #67aaf5; }
 .prompt-mark { color: #a6a6a6; }
 
-.terminal-output {
-  margin-top: 18px;
-  color: #e3e3e3;
-  font-size: 9px;
-  line-height: 1.45;
-}
-
-.terminal-output-hero { display: grid; gap: 2px; }
 .terminal-row, .terminal-plan-row { min-width: 0; display: grid; align-items: baseline; }
 .terminal-row { grid-template-columns: 16px 1fr; }
 .terminal-row p { min-width: 0; margin: 0; }
@@ -465,7 +495,7 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 
-.plan-keep { color: #a1a1a1; }
+.plan-keep, .plan-preserve { color: #a1a1a1; }
 .plan-reuse { color: #79aef4; }
 .plan-merge { color: #e2ad52; }
 .plan-add { color: #5bd879; }
@@ -1495,9 +1525,9 @@ a { color: inherit; text-decoration: none; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
   .run-card-head { flex-direction: column; }
   .team-visual { padding: 12px; }
-  .terminal-screen-hero { padding: 18px 14px 20px; }
+  .terminal-screen-hero { height: 273px; mask-image: linear-gradient(to bottom, transparent, #000 18px); }
+  .terminal-buffer { inset: auto 14px 20px; min-height: calc(100% - 38px); font-size: 7.5px; }
   .shell-prompt { font-size: 8px; }
-  .terminal-output { font-size: 7.5px; }
   .terminal-plan-row { grid-template-columns: 14px 41px minmax(0, 1fr); }
   .terminal-chrome { height: 34px; font-size: 8px; }
   .traffic-lights { left: 10px; gap: 5px; }
@@ -1564,4 +1594,6 @@ a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .terminal-caret.is-idle { animation: none; }
+  .terminal-buffer.is-clearing { transition: none; }
 }
