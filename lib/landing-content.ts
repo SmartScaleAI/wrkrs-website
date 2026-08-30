@@ -2,28 +2,28 @@ export const workflow = [
   {
     number: "01",
     title: "Plan",
-    owner: "Product Manager worker",
+    owner: "Product Manager",
     description:
-      "Clarifies the outcome, chooses the workers needed, and sets a clear approval gate.",
+      "Clarifies the outcome, chooses the agents needed, and sets a clear approval gate.",
   },
   {
     number: "02",
     title: "Design",
-    owner: "Product Designer worker",
+    owner: "Product Designer",
     description:
       "Researches the market, maps the flow, and prepares the design for your review.",
   },
   {
     number: "03",
     title: "Build",
-    owner: "Software Engineer workers",
+    owner: "Software Engineers",
     description:
-      "Starts one or more engineer workers, specialized by stack and isolated by task.",
+      "Starts one or more engineers, specialized by stack and isolated by task.",
   },
   {
     number: "04",
     title: "Verify",
-    owner: "QA Engineer worker",
+    owner: "QA Engineer",
     description:
       "Tests the result against the approved criteria, not just whether it compiles.",
   },
@@ -44,12 +44,12 @@ export const principles = [
   },
   {
     eyebrow: "Configure",
-    title: "Workers are plain text.",
-    body: "Worker roles, specializations, tools, workflows, and approval rules live in readable files versioned with Git.",
+    title: "Roles are plain text.",
+    body: "Roles, specializations, tools, workflows, and approval rules live in readable files versioned with Git.",
   },
   {
     eyebrow: "Run",
     title: "Stay in your coding agent.",
-    body: "Keep using Claude Code locally or in the cloud. Claude runs each worker as an AI agent; wrkrs supplies the team structure.",
+    body: "Keep using Claude Code locally or in the cloud. Claude runs the agents; wrkrs supplies the team structure.",
   },
 ] as const;

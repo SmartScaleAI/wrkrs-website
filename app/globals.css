@@ -95,7 +95,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.025em;
 }
 
-.wrkrs-mark { width: 22px; height: 22px; }
+/*
+ * The symbol's 2048 canvas includes the brand's 12.5% clear space, so the box is
+ * larger than the visible mark. 18px renders the symbol about 13.5px tall next to
+ * the 16px wordmark: the same 0.84 symbol-to-text ratio as the official lockup.
+ */
+.wrkrs-mark { width: 18px; height: 18px; }
 
 .nav-links {
   display: flex;
@@ -108,11 +113,34 @@ a { color: inherit; text-decoration: none; }
 .nav-links a, .text-action { transition: color 160ms ease; }
 .nav-links a:hover, .text-action:hover { color: #000; }
 
-.nav-cta {
+.nav-actions {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-docs {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--paper);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.nav-docs:hover {
+  border-color: #d2d2d2;
+  background: var(--soft);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 9px 13px;
   color: white;
   background: var(--ink);
@@ -124,6 +152,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-cta:hover, .primary-action:hover { background: #2a2a2a; }
+.nav-cta .github-icon { width: 14px; height: 14px; flex: 0 0 auto; }
 
 .hero {
   min-height: 680px;
@@ -223,12 +252,26 @@ a { color: inherit; text-decoration: none; }
   color: #fff;
   font-family: var(--font-geist-mono), monospace;
   font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
   transition: background 160ms ease;
 }
 
 .hero-command:hover { background: #272727; }
 .hero-command > span:first-child { color: #666; }
-.hero-command > span:last-child { color: #8b8b8b; }
+/* Reserve room for "Copied"/"Failed" so feedback never resizes the card. */
+.hero-command > span:last-child {
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #8b8b8b;
+  text-align: right;
+}
+.copy-command-icon { width: 14px; height: 14px; stroke-width: 1.75; }
+.hero-command[data-state="copied"] > span:last-child { color: #5bd879; }
+.hero-command[data-state="failed"] > span:last-child { color: #e6b04e; }
 .hero-command code { font-family: inherit; }
 
 .text-action {
@@ -715,7 +758,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 64px;
   padding: 0 48px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1395,8 +1438,11 @@ a { color: inherit; text-decoration: none; }
 
 .code-state { color: #5cbb79; }
 .code-window pre { margin: 0; padding: 30px 32px 34px; overflow-x: auto; color: #d3d3d3; font-family: var(--font-geist-mono), monospace; font-size: 12px; line-height: 1.82; }
-.code-muted { color: #a3a3a3; }
-.code-key { color: #f7f7f7; }
+.yaml-section { color: #f7f7f7; font-weight: 500; }
+.yaml-key { color: #79aef4; }
+.yaml-value { color: #5bd879; }
+.yaml-approval { color: #e2ad52; }
+.yaml-punct { color: #8a8a8a; }
 
 .install-safety {
   padding-top: 120px;
@@ -1448,7 +1494,6 @@ a { color: inherit; text-decoration: none; }
 .runtime-row.available span:last-child::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: #18a34a; }
 
 .final-cta {
-  position: relative;
   padding-top: 130px;
   padding-bottom: 135px;
   text-align: center;
@@ -1456,9 +1501,6 @@ a { color: inherit; text-decoration: none; }
   color: white;
 }
 
-.final-cta::before, .final-cta::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: #242424; }
-.final-cta::before { left: 20%; }
-.final-cta::after { right: 20%; }
 .final-mark { width: 50px; height: 50px; margin: 0 auto 34px; display: grid; place-items: center; border: 1px solid #343434; border-radius: 50%; }
 .final-mark .wrkrs-mark { width: 24px; height: 24px; }
 .final-cta .section-kicker { color: #767676; }
@@ -1539,10 +1581,9 @@ a { color: inherit; text-decoration: none; }
   .specialist-node small { font-size: 7px; }
   .approval-bar { grid-template-columns: 1fr; }
   .review-link { width: fit-content; }
-  .signal-strip { grid-template-columns: 1fr 1fr; gap: 0; padding-block: 8px; }
+  .signal-strip { grid-template-columns: 1fr; gap: 0; padding-block: 8px; }
   .signal-strip span { min-height: 42px; display: flex; align-items: center; }
-  .signal-strip span:not(:first-child) { padding-left: 0; border-left: 0; }
-  .signal-strip span:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--line); }
+  .signal-strip span:not(:first-child) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .statement, .workflow-intro, .config-section, .install-safety, .runtime-section { grid-template-columns: 1fr; }
   .how-section { padding-top: 96px; padding-bottom: 100px; }
   .how-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 52px; }
@@ -1584,8 +1625,6 @@ a { color: inherit; text-decoration: none; }
   .report-row { min-width: 620px; }
   .safety-copy { order: -1; }
   .final-cta { padding-top: 100px; padding-bottom: 100px; }
-  .final-cta::before { left: 10%; }
-  .final-cta::after { right: 10%; }
   .command-note { display: none; }
   .command-line { grid-template-columns: auto 1fr; }
   .site-footer { min-height: 140px; grid-template-columns: 1fr auto; gap: 18px; }

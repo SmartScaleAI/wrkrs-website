@@ -23,10 +23,6 @@ export const metadata: Metadata = {
     title: siteName,
     description: siteDescription,
   },
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-  },
 };
 
 export const viewport: Viewport = {
