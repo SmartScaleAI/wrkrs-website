@@ -92,7 +92,7 @@ export const setupScript: readonly ScriptEntry[] = [
   { kind: "detail", text: "Swift · GitHub Actions", delay: 110 },
   { kind: "spacer", delay: 0, hold: 520 },
 
-  { kind: "step", text: "Claude Code configuration detected", delay: 300 },
+  { kind: "step", text: "Coding agent configuration detected", delay: 300 },
   { kind: "detail", text: "CLAUDE.md · .claude/settings.json · 3 existing agents", delay: 110 },
   { kind: "spacer", delay: 0, hold: 420 },
 
@@ -117,7 +117,7 @@ export const setupScript: readonly ScriptEntry[] = [
 
   { kind: "step", text: "Preconditions rechecked", delay: 320 },
   { kind: "step", text: "Configuration written", delay: 280 },
-  { kind: "step", text: "Claude Code adapter installed", delay: 280 },
+  { kind: "step", text: "Runtime adapter installed", delay: 280 },
   { kind: "step", text: "Ownership manifest recorded", delay: 240 },
   { kind: "end", text: "Installation complete", delay: 200 },
   { kind: "blank", delay: 0, hold: 500 },
@@ -127,9 +127,9 @@ export const setupScript: readonly ScriptEntry[] = [
 
   { kind: "check", text: "Configuration valid", delay: 420 },
   { kind: "check", text: "Worker roles valid", delay: 160 },
-  { kind: "check", text: "Claude Code adapter valid", delay: 160 },
+  { kind: "check", text: "Runtime adapter valid", delay: 160 },
   { kind: "check", text: "Ownership manifest valid", delay: 160 },
-  { kind: "end", text: "Ready. Open Claude Code and start with the Product Manager worker.", delay: 260 },
+  { kind: "end", text: "Ready. Open your coding agent and start with the Product Manager worker.", delay: 260 },
   { kind: "blank", delay: 0 },
 
   { kind: "prompt", delay: 0, hold: FINAL_HOLD_MS },
@@ -179,5 +179,5 @@ export const LOOP_DURATION_MS = setupTerminalFrames.reduce((total, frame) => tot
 /** One concise description of the whole sequence for assistive technology. */
 export const setupTerminalDescription =
   "Terminal animation showing npx wrkrs init inspecting the Zerro repository, proposing four AI workers, " +
-  "preserving existing Claude configuration, waiting for approval, installing repository-owned files, " +
+  "preserving existing coding-agent configuration, waiting for approval, installing repository-owned files, " +
   "and validating the setup with npx wrkrs check.";

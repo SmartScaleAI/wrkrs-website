@@ -1,7 +1,10 @@
-export const siteName = "wrkrs: AI agent teams as code";
+export const siteName = "wrkrs";
+
+/** Document title. A colon instead of a dash keeps the site's no-em-dash rule. */
+export const siteTitle = "wrkrs: Install an AI development team in your repo";
 
 export const siteDescription =
-  "An open-source CLI that organizes AI agents into repository-owned development workers with clear roles, specializations, and approval rules.";
+  "wrkrs is an open-source CLI that installs configured AI agents into your repository. Your coding agent runs the team, and your repo owns the configuration.";
 
 const productionHostname = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
