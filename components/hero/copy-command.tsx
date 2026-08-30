@@ -1,7 +1,9 @@
 "use client";
 
+import { cva, type VariantProps } from "class-variance-authority";
 import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 type CopyStatus = "idle" | "copied" | "failed";
 
@@ -45,18 +47,28 @@ async function copyText(text: string): Promise<boolean> {
   return copyWithExecCommand(text);
 }
 
+const copyCommand = cva(
+  "group inline-grid w-full max-w-[360px] min-w-[230px] cursor-pointer appearance-none grid-cols-[auto_1fr_auto] items-center gap-[11px] rounded-control border bg-ink text-left font-mono text-white transition-[background] focus-visible:outline-white",
+  {
+    variants: {
+      variant: {
+        hero: "border-grey-900 px-3.5 py-3 text-[12px] hover:bg-[#272727] md:w-auto md:max-w-none",
+        cta: "mx-auto mt-6 grid border-[#333] bg-[#111] px-4.5 py-[15px] text-[13px] hover:bg-[#1c1c1c] md:mt-7.5 md:max-w-[440px]",
+      },
+    },
+    defaultVariants: { variant: "hero" },
+  },
+);
+
 /**
  * The hero command card as a copy button. Click, Enter, or Space copies the
  * command; the card shows "Copied" or "Failed" briefly without changing size.
+ * The final CTA renders the wider `cta` variant.
  */
 export function CopyCommand({
   command,
-  className = "hero-command",
-}: {
-  command: string;
-  /** Style hook; the final CTA passes an additional variant class. */
-  className?: string;
-}) {
+  variant,
+}: { command: string } & VariantProps<typeof copyCommand>) {
   const [feedback, setFeedback] = useState(idleFeedback);
 
   useEffect(() => {
@@ -76,24 +88,26 @@ export function CopyCommand({
   return (
     <button
       type="button"
-      className={className}
+      className={cn(copyCommand({ variant }))}
       data-state={feedback.status}
       aria-label={`Copy ${command}`}
       onClick={handleCopy}
     >
-      <span aria-hidden="true">$</span>
+      <span className="text-grey-500" aria-hidden="true">
+        $
+      </span>
       <code>{command}</code>
-      <span className="copy-slot">
+      <span className="inline-flex min-w-[62px] justify-end text-[#a3a3a3] group-hover:text-grey-200 group-data-[state=copied]:text-terminal-green group-data-[state=failed]:text-terminal-amber">
         {feedback.status === "idle" ? (
-          <span className="copy-label" aria-hidden="true">
-            <Copy className="copy-command-icon" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap" aria-hidden="true">
+            <Copy className="size-3.5" strokeWidth={1.75} aria-hidden="true" />
             Copy
           </span>
         ) : null}
-        <span role="status" className="copy-label">
+        <span role="status" className="inline-flex items-center gap-1.5 whitespace-nowrap">
           {feedback.status === "copied" ? (
             <>
-              <Check className="copy-command-icon" aria-hidden="true" />
+              <Check className="size-3.5" strokeWidth={1.75} aria-hidden="true" />
               Copied
             </>
           ) : null}
