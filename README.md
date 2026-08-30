@@ -30,7 +30,8 @@ Open [http://localhost:3000](http://localhost:3000).
 pnpm check
 ```
 
-This runs ESLint, the TypeScript compiler, and a production Next.js build.
+This runs Prettier (`pnpm format:check`), ESLint, the TypeScript compiler, and a
+production Next.js build. `pnpm format` rewrites files in place.
 
 ## Deployment
 

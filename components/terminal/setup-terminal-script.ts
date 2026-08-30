@@ -48,9 +48,7 @@ export interface TypedTiming {
 export type TypedLine = Extract<TerminalLine, { kind: "command" | "confirm" }>;
 export type StaticLine = Exclude<TerminalLine, TypedLine>;
 
-export type ScriptEntry =
-  | (TypedLine & LineTiming & TypedTiming)
-  | (StaticLine & LineTiming);
+export type ScriptEntry = (TypedLine & LineTiming & TypedTiming) | (StaticLine & LineTiming);
 
 export interface TerminalFrame {
   /** Number of script entries rendered in full. */
@@ -97,7 +95,11 @@ export const setupScript: readonly ScriptEntry[] = [
   { kind: "spacer", delay: 0, hold: 420 },
 
   { kind: "step", text: "Worker roster proposed", delay: 300 },
-  { kind: "detail", text: "Product Manager · Product Designer · Software Engineer · QA Engineer", delay: 110 },
+  {
+    kind: "detail",
+    text: "Product Manager · Product Designer · Software Engineer · QA Engineer",
+    delay: 110,
+  },
   { kind: "detail", text: "Software Engineer specialization: macOS / Swift", delay: 110 },
   { kind: "spacer", delay: 0, hold: 520 },
 
@@ -112,7 +114,15 @@ export const setupScript: readonly ScriptEntry[] = [
   { kind: "plan", action: "ADD", path: ".claude/skills/wrkrs/SKILL.md", delay: 60 },
   { kind: "spacer", delay: 0, hold: 1300 },
 
-  { kind: "confirm", question: "Apply these changes?", hint: "(y/N)", answer: "y", delay: 160, idle: 1200, enter: 450 },
+  {
+    kind: "confirm",
+    question: "Apply these changes?",
+    hint: "(y/N)",
+    answer: "y",
+    delay: 160,
+    idle: 1200,
+    enter: 450,
+  },
   { kind: "blank", delay: 0 },
 
   { kind: "step", text: "Preconditions rechecked", delay: 320 },
@@ -129,7 +139,11 @@ export const setupScript: readonly ScriptEntry[] = [
   { kind: "check", text: "Worker roles valid", delay: 160 },
   { kind: "check", text: "Runtime adapter valid", delay: 160 },
   { kind: "check", text: "Ownership manifest valid", delay: 160 },
-  { kind: "end", text: "Ready. Open your coding agent and start with the Product Manager worker.", delay: 260 },
+  {
+    kind: "end",
+    text: "Ready. Open your coding agent and start with the Product Manager worker.",
+    delay: 260,
+  },
   { kind: "blank", delay: 0 },
 
   { kind: "prompt", delay: 0, hold: FINAL_HOLD_MS },
@@ -174,7 +188,10 @@ export const FINAL_FRAME_INDEX = setupTerminalFrames.findIndex(
 );
 
 /** Total length of one loop, in milliseconds. */
-export const LOOP_DURATION_MS = setupTerminalFrames.reduce((total, frame) => total + frame.duration, 0);
+export const LOOP_DURATION_MS = setupTerminalFrames.reduce(
+  (total, frame) => total + frame.duration,
+  0,
+);
 
 /** One concise description of the whole sequence for assistive technology. */
 export const setupTerminalDescription =

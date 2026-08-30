@@ -9,6 +9,13 @@ export const docsUrl = "https://github.com/SmartScaleAI/wrkrs#readme";
 export const issuesUrl = "https://github.com/SmartScaleAI/wrkrs/issues";
 export const command = "npx wrkrs init";
 
+/** Header links to the page's main sections, in reading order. */
+export const navLinks = [
+  { href: "#how-it-works", label: "How it works" },
+  { href: "#installed", label: "What gets installed" },
+  { href: "#faq", label: "FAQ" },
+] as const;
+
 /** Ordered proof points shown directly under the hero. */
 export const proofPoints = [
   "Read-only analysis first",
@@ -169,7 +176,8 @@ export const faq = [
   },
   {
     question: "Is wrkrs open source?",
-    answer: "Yes. The CLI is MIT licensed and developed in the open at github.com/SmartScaleAI/wrkrs.",
+    answer:
+      "Yes. The CLI is MIT licensed and developed in the open at github.com/SmartScaleAI/wrkrs.",
   },
   {
     question: "Does wrkrs automatically commit, push, or deploy code?",
