@@ -18,16 +18,21 @@ export default function Home() {
           <a href="#workflow">Worker model</a>
           <a href="#open-source">Open source</a>
         </div>
-        <a
-          className="nav-cta"
-          href="https://github.com/SmartScaleAI/wrkrs-website"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="View wrkrs on GitHub"
-        >
-          <GitHubIcon />
-          GitHub
-        </a>
+        <div className="nav-actions">
+          <a className="nav-docs" href="#how-it-works">
+            See docs
+          </a>
+          <a
+            className="nav-cta"
+            href="https://github.com/SmartScaleAI/wrkrs-website"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="View wrkrs on GitHub"
+          >
+            <GitHubIcon />
+            GitHub
+          </a>
+        </div>
       </nav>
 
       <section className="hero grid-shell" id="top">
@@ -88,7 +93,7 @@ export default function Home() {
               </div>
             </div>
             <h3>Run it inside your repo.</h3>
-            <p>The CLI detects your stack, current Claude setup, and available project tools.</p>
+            <p>The CLI detects your stack, current coding setup, and available project tools.</p>
           </article>
 
           <article className="how-card">
@@ -126,7 +131,7 @@ export default function Home() {
                 <div className="claude-status"><span>Loaded from repository</span><code>.wrkrs/team.yaml</code></div>
               </div>
             </div>
-            <h3>Keep using Claude Code.</h3>
+            <h3>Keep using your coding agent.</h3>
             <p>Start features inside your existing coding agent. Claude runs the team defined in your repo.</p>
           </article>
         </div>

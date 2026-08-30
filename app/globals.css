@@ -113,8 +113,31 @@ a { color: inherit; text-decoration: none; }
 .nav-links a, .text-action { transition: color 160ms ease; }
 .nav-links a:hover, .text-action:hover { color: #000; }
 
-.nav-cta {
+.nav-actions {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-docs {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--paper);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.nav-docs:hover {
+  border-color: #d2d2d2;
+  background: var(--soft);
+}
+
+.nav-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -238,7 +261,15 @@ a { color: inherit; text-decoration: none; }
 .hero-command:hover { background: #272727; }
 .hero-command > span:first-child { color: #666; }
 /* Reserve room for "Copied"/"Failed" so feedback never resizes the card. */
-.hero-command > span:last-child { min-width: 44px; color: #8b8b8b; text-align: right; }
+.hero-command > span:last-child {
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #8b8b8b;
+  text-align: right;
+}
+.copy-command-icon { width: 14px; height: 14px; stroke-width: 1.75; }
 .hero-command[data-state="copied"] > span:last-child { color: #5bd879; }
 .hero-command[data-state="failed"] > span:last-child { color: #e6b04e; }
 .hero-command code { font-family: inherit; }

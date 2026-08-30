@@ -1,5 +1,6 @@
 "use client";
 
+import { Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type CopyStatus = "idle" | "copied" | "failed";
@@ -78,7 +79,9 @@ export function CopyCommand({ command }: { command: string }) {
       <span role="status">
         {feedback.status === "copied" ? "Copied" : null}
         {feedback.status === "failed" ? "Failed" : null}
-        {feedback.status === "idle" ? <span aria-hidden="true">→</span> : null}
+        {feedback.status === "idle" ? (
+          <Copy className="copy-command-icon" aria-hidden="true" />
+        ) : null}
       </span>
     </button>
   );
