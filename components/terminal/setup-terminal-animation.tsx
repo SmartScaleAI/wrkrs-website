@@ -54,6 +54,7 @@ function advance({ frame }: Playback): Playback {
  */
 export function SetupTerminalAnimation() {
   const visualRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
   const [playback, setPlayback] = useState(initialPlayback);
   const [inView, setInView] = useState(false);
   const reducedMotion = useSyncExternalStore(
@@ -89,6 +90,16 @@ export function SetupTerminalAnimation() {
   }, [playing, playback.frame, playback.started]);
 
   const frame = setupTerminalFrames[reducedMotion ? FINAL_FRAME_INDEX : playback.frame];
+
+  // Keep the newest line in view by scrolling the fixed-height screen. Scrolling is
+  // not a layout shift, unlike moving the buffer. The server-rendered preview stays
+  // at the top of the transcript until playback starts; reduced motion shows the end.
+  useEffect(() => {
+    const screen = screenRef.current;
+    if (!screen || frame.clearing) return;
+    if (!playback.started && !reducedMotion) return;
+    screen.scrollTop = screen.scrollHeight;
+  }, [frame, playback.started, reducedMotion]);
   const committed = setupScript.slice(0, frame.lines);
   const typing = frame.typed === undefined ? null : setupScript[frame.lines];
 
@@ -100,7 +111,7 @@ export function SetupTerminalAnimation() {
       aria-label={setupTerminalDescription}
     >
       <TerminalChrome title="zerro · zsh · 118×32" />
-      <div className="terminal-screen terminal-screen-hero">
+      <div ref={screenRef} className="terminal-screen terminal-screen-hero">
         <div className={frame.clearing ? "terminal-buffer is-clearing" : "terminal-buffer"}>
           {committed.map((entry, index) => (
             <TerminalLine key={index} entry={entry} />

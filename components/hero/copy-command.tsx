@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type CopyStatus = "idle" | "copied" | "failed";
@@ -49,7 +49,14 @@ async function copyText(text: string): Promise<boolean> {
  * The hero command card as a copy button. Click, Enter, or Space copies the
  * command; the card shows "Copied" or "Failed" briefly without changing size.
  */
-export function CopyCommand({ command }: { command: string }) {
+export function CopyCommand({
+  command,
+  className = "hero-command",
+}: {
+  command: string;
+  /** Style hook; the final CTA passes an additional variant class. */
+  className?: string;
+}) {
   const [feedback, setFeedback] = useState(idleFeedback);
 
   useEffect(() => {
@@ -69,19 +76,29 @@ export function CopyCommand({ command }: { command: string }) {
   return (
     <button
       type="button"
-      className="hero-command"
+      className={className}
       data-state={feedback.status}
       aria-label={`Copy ${command}`}
       onClick={handleCopy}
     >
-      <span>$</span>
+      <span aria-hidden="true">$</span>
       <code>{command}</code>
-      <span role="status">
-        {feedback.status === "copied" ? "Copied" : null}
-        {feedback.status === "failed" ? "Failed" : null}
+      <span className="copy-slot">
         {feedback.status === "idle" ? (
-          <Copy className="copy-command-icon" aria-hidden="true" />
+          <span className="copy-label" aria-hidden="true">
+            <Copy className="copy-command-icon" aria-hidden="true" />
+            Copy
+          </span>
         ) : null}
+        <span role="status" className="copy-label">
+          {feedback.status === "copied" ? (
+            <>
+              <Check className="copy-command-icon" aria-hidden="true" />
+              Copied
+            </>
+          ) : null}
+          {feedback.status === "failed" ? "Failed" : null}
+        </span>
       </span>
     </button>
   );
