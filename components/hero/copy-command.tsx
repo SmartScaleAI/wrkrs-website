@@ -48,12 +48,12 @@ async function copyText(text: string): Promise<boolean> {
 }
 
 const copyCommand = cva(
-  "group inline-grid w-full max-w-[360px] min-w-[230px] cursor-pointer appearance-none grid-cols-[auto_1fr_auto] items-center gap-[11px] rounded-control border bg-ink text-left font-mono text-white transition-[background] focus-visible:outline-white",
+  "group inline-grid w-full max-w-[360px] min-w-[230px] cursor-pointer appearance-none grid-cols-[auto_1fr_auto] items-center gap-[11px] rounded-control border bg-[#0a0a0a] text-left font-mono text-white transition-[background] focus-visible:outline-white",
   {
     variants: {
       variant: {
-        hero: "border-grey-900 px-3.5 py-3 text-[12px] hover:bg-[#272727] md:w-auto md:max-w-none",
-        cta: "mx-auto mt-6 grid border-[#333] bg-[#111] px-4.5 py-[15px] text-[13px] hover:bg-[#1c1c1c] md:mt-7.5 md:max-w-[440px]",
+        hero: "border-grey-900 px-3.5 py-3 text-[12px] hover:bg-[#272727] md:w-auto md:max-w-none dark:border-[#2f2f2f] dark:bg-[#171717]",
+        cta: "mx-auto mt-6 grid border-[#333] bg-[#111] px-4.5 py-[15px] text-[13px] hover:bg-[#1c1c1c] md:mt-7.5 md:max-w-[440px] dark:bg-[#202020] dark:hover:bg-[#292929]",
       },
     },
     defaultVariants: { variant: "hero" },
@@ -97,7 +97,7 @@ export function CopyCommand({
         $
       </span>
       <code>{command}</code>
-      <span className="inline-flex min-w-[62px] justify-end text-[#a3a3a3] group-hover:text-grey-200 group-data-[state=copied]:text-terminal-green group-data-[state=failed]:text-terminal-amber">
+      <span className="inline-flex min-w-[62px] justify-end text-[#a3a3a3] group-hover:text-[#d4d4d4] group-data-[state=copied]:text-terminal-green group-data-[state=failed]:text-terminal-amber">
         {feedback.status === "idle" ? (
           <span className="inline-flex items-center gap-1.5 whitespace-nowrap" aria-hidden="true">
             <Copy className="size-3.5" strokeWidth={1.75} aria-hidden="true" />

@@ -107,7 +107,7 @@ export function SetupTerminalAnimation() {
   return (
     <div
       ref={visualRef}
-      className="w-full max-w-[640px] self-center overflow-hidden rounded-window border border-[#282828] bg-grey-950 text-[#f2f2f2] shadow-[0_32px_90px_rgba(0,0,0,.18),0_6px_18px_rgba(0,0,0,.1),inset_0_0_0_1px_rgba(255,255,255,.025)] lg:w-auto lg:max-w-none"
+      className="w-full max-w-[640px] self-center overflow-hidden rounded-window border border-[#282828] bg-grey-950 text-[#f2f2f2] shadow-[0_32px_90px_rgba(0,0,0,.35),0_6px_18px_rgba(0,0,0,.18),inset_0_0_0_1px_rgba(255,255,255,.025)]"
       role="img"
       aria-label={setupTerminalDescription}
     >

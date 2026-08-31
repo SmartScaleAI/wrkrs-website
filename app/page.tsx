@@ -12,6 +12,7 @@ import { SignalStrip } from "@/components/landing/signal-strip";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { SiteHeader } from "@/components/landing/site-header";
 import { Steps } from "@/components/landing/steps";
+import { WorkflowStrip } from "@/components/landing/workflow-strip";
 import { additions, repositoryUrl, team, workerDefinition } from "@/lib/landing-content";
 import { siteDescription, siteUrl } from "@/lib/site";
 
@@ -54,6 +55,8 @@ export default function Home() {
         <Hero />
 
         <SignalStrip />
+
+        <WorkflowStrip />
 
         <Section id="how-it-works">
           <SectionHeading

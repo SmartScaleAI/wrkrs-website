@@ -6,7 +6,7 @@ const light =
 export function TerminalChrome({ title }: { title: string }) {
   return (
     <div
-      className="relative flex h-8 items-center justify-center border-b border-[#202020] bg-[linear-gradient(#383838,#2d2d2d)] font-[family-name:-apple-system,BlinkMacSystemFont,'Helvetica_Neue',sans-serif] text-[9px] font-medium text-grey-350 select-none text-shadow-[0_1px_rgba(0,0,0,.75)] md:h-9.5 md:text-[10px]"
+      className="relative flex h-8 items-center justify-center border-b border-[#202020] bg-[linear-gradient(#383838,#2d2d2d)] font-[family-name:-apple-system,BlinkMacSystemFont,'Helvetica_Neue',sans-serif] text-[9px] font-medium text-[#b8b8b8] select-none text-shadow-[0_1px_rgba(0,0,0,.75)] md:h-9.5 md:text-[10px]"
       aria-hidden="true"
     >
       <div className="absolute left-2.5 flex gap-[5px] md:left-[13px] md:gap-[7px]">

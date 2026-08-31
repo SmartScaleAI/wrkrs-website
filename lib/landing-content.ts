@@ -9,19 +9,47 @@ export const docsUrl = "https://github.com/SmartScaleAI/wrkrs#readme";
 export const issuesUrl = "https://github.com/SmartScaleAI/wrkrs/issues";
 export const command = "npx wrkrs init";
 
-/** Header links to the page's main sections, in reading order. */
-export const navLinks = [
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#installed", label: "What gets installed" },
-  { href: "#faq", label: "FAQ" },
-] as const;
-
 /** Ordered proof points shown directly under the hero. */
 export const proofPoints = [
   "Read-only analysis first",
   "Exact changes shown before install",
   "Nothing written without approval",
   "Open source, MIT licensed",
+] as const;
+
+/** The five delivery steps and the role that owns each, shown in the dark strip under the hero. */
+export const workflow = [
+  {
+    number: "01",
+    title: "Plan",
+    owner: "Product Manager",
+    description:
+      "Clarifies the outcome, chooses the agents needed, and sets a clear approval gate.",
+  },
+  {
+    number: "02",
+    title: "Design",
+    owner: "Product Designer",
+    description: "Researches the market, maps the flow, and prepares the design for your review.",
+  },
+  {
+    number: "03",
+    title: "Build",
+    owner: "Software Engineers",
+    description: "Starts one or more engineers, specialized by stack and isolated by task.",
+  },
+  {
+    number: "04",
+    title: "Verify",
+    owner: "QA Engineer",
+    description: "Tests the result against the approved criteria, not just whether it compiles.",
+  },
+  {
+    number: "05",
+    title: "Release",
+    owner: "You",
+    description: "Keeps merge, deployment, and release decisions explicitly in your hands.",
+  },
 ] as const;
 
 export const steps = [

@@ -23,7 +23,7 @@ export function Section({
 }) {
   if (tone === "dark") {
     return (
-      <section id={id} className={cn(padding, "bg-ink text-white")}>
+      <section id={id} className={cn(padding, "surface-ink text-white")}>
         <Shell className={layout === "split" ? split : undefined}>{children}</Shell>
       </section>
     );
