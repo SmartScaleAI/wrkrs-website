@@ -10,7 +10,7 @@ const fileModeClass = {
 /** The planned-paths window for the "What gets installed" section. */
 export function CodeWindow() {
   return (
-    <div className="overflow-hidden rounded-window border border-grey-900 bg-[#0c0c0c] text-grey-100 shadow-[0_28px_80px_rgba(0,0,0,.12)]">
+    <div className="overflow-hidden rounded-window border border-grey-900 bg-[#0c0c0c] text-grey-100 shadow-[0_28px_80px_rgba(0,0,0,.12)] dark:border-[#2b2b2b] dark:bg-[#171717] dark:shadow-none">
       <div className="flex h-auto min-h-11 flex-wrap items-center justify-between gap-y-1 border-b border-grey-900 px-4.5 py-3 font-mono text-[10px] text-[#999] md:h-12 md:min-h-auto md:flex-nowrap md:gap-y-0 md:py-0">
         <span>npx wrkrs init · planned paths</span>
         <span className="text-[#5cbb79]">12 files created · 0 modified</span>

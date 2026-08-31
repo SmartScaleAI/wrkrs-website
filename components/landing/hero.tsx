@@ -18,7 +18,7 @@ export function Hero() {
         <div className="mt-6.5 flex flex-col items-center gap-1.5 md:mt-9.5 md:flex-row md:gap-6">
           <CopyCommand command={command} />
           <a
-            className="inline-flex min-h-11 items-center text-[14px] text-grey-700 underline decoration-grey-350 underline-offset-4 transition-[color] hover:text-black"
+            className="inline-flex min-h-11 items-center text-[14px] text-grey-700 underline decoration-grey-350 underline-offset-4 transition-[color] hover:text-black dark:hover:text-white"
             href="#installed"
           >
             See what the CLI installs

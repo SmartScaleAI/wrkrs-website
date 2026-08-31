@@ -7,7 +7,7 @@ export function SignalStrip() {
     <Shell
       as="section"
       aria-label="How wrkrs treats your repository"
-      className="grid min-h-16 grid-cols-1 items-center border-y border-line py-1.5 font-mono text-[10px] tracking-[0.03em] text-[#626262] uppercase sm:grid-cols-[1fr_1fr] md:py-2 lg:grid-cols-[repeat(4,1fr)] lg:py-0"
+      className="grid min-h-16 grid-cols-1 items-center border-y border-line py-1.5 font-mono text-[10px] tracking-[0.03em] text-[#626262] uppercase sm:grid-cols-[1fr_1fr] md:py-2 lg:grid-cols-[repeat(4,1fr)] lg:py-0 dark:text-grey-650"
     >
       {proofPoints.map((point) => (
         <span

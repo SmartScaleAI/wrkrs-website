@@ -11,7 +11,7 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-grey-900 bg-ink text-white">
+    <footer className="border-t border-grey-900 surface-ink text-white">
       <Shell className="grid min-h-0 grid-cols-1 items-center gap-1 pt-5 pb-6 md:min-h-[100px] md:grid-cols-[1fr_auto_1fr] md:gap-0 md:py-0">
         <BrandLink />
         <p className="order-3 mt-1 text-[13px] text-grey-450 md:order-none md:mt-0">

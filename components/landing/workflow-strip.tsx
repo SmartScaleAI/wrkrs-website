@@ -9,7 +9,7 @@ import { workflow } from "@/lib/landing-content";
  */
 export function WorkflowStrip() {
   return (
-    <section aria-label="How the team delivers" className="bg-ink text-white">
+    <section aria-label="How the team delivers" className="surface-ink text-white">
       <Shell className="py-16 md:py-24">
         <div className="grid grid-cols-1 border-b border-[#353535] lg:grid-cols-5 lg:border-b-0">
           {workflow.map((step) => (

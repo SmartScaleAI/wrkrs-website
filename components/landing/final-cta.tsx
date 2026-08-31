@@ -10,7 +10,7 @@ const link =
 
 export function FinalCta() {
   return (
-    <section id="install" className="bg-ink text-center text-white">
+    <section id="install" className="surface-ink text-center text-white">
       <Shell className="pt-18 pb-20 md:pt-21 md:pb-23">
         <div className="mx-auto mb-7 grid size-12.5 place-items-center rounded-[50%] border border-[#343434]">
           <WrkrsMark className="size-6" />
